@@ -2,7 +2,7 @@ import React,{useContext} from 'react'
 import {Context} from '../context/context'
 import { navigate } from '@reach/router'
 const register = () => {
-	const {createUser} = useContext(Context)
+	const {createUser,token} = useContext(Context)
 
 	const submitRegister = async e => {
 		e.preventDefault()
@@ -11,7 +11,9 @@ const register = () => {
 		if(error) return 
 		navigate('/login')
 	}
-
+	useEffect(() => {
+		if(token) navigate('/')
+	},[])
 	return <div>
 		<form onSubmit={submitRegister}>
 			<input type="email" name="email" />
