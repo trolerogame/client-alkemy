@@ -8,6 +8,7 @@ const context = ({ children }) => {
 	const [operations, setOperations] = useState([])
 	const [user, setUser] = useState({})
 	const [token, setToken] = useState(getTokenCookie())
+
 	const getOperationsAndUser = async () => {
 		const res = await fetch('http://localhost:5050/user/operations', {
 			headers: {
