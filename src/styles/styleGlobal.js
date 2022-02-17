@@ -28,6 +28,10 @@ export const GlobalStyle = createGlobalStyle`
     .justify-between{
         justify-content: space-between;
     }
+    .my-6{
+        margin-top:10px;
+        margin-bottom:10px;
+    }
 `
 
 export const Header = styled.header`
