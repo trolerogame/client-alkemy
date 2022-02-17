@@ -52,7 +52,7 @@ const context = ({ children }) => {
 
 	const createOperation = async (data) => {
 		const res = await fetch(
-			'http://localhost:5050/operation/create/',
+			'http://localhost:5050/operations/create/',
 			{
 				method: 'POST',
 				headers: {
@@ -63,11 +63,12 @@ const context = ({ children }) => {
 			}
 		)
 		const newOperation = await res.json()
-		setOperation([...operation, newOperation])
+		console.log(newOperation)
+		setOperations([...operations, newOperation])
 	}
 
 	const updateOperation = async (id, concept, amount) => {
-		await fetch(`http://localhost:5050/operation/update/${id}`,{
+		await fetch(`http://localhost:5050/operations/update/${id}`,{
 			method: 'PATCH',
 			body:JSON.stringify({
 				concept,
@@ -82,7 +83,7 @@ const context = ({ children }) => {
 
 	const deleteOperation = async (id) => {
 		const res = await fetch(
-			`http://localhost:5050/operation/delete/${id}`,
+			`http://localhost:5050/operations/delete/${id}`,
 			{
 				method: 'DELETE',
 				headers:{
@@ -91,8 +92,8 @@ const context = ({ children }) => {
 			}
 		)
 		const operationDelete = await res.json()
-		operationArray = operation.filter((op) => op.id !== operationDelete.id)
-		setOperation(operationArray)
+		operationArray = operations.filter((op) => op.id !== operationDelete.id)
+		setOperations(operationArray)
 	}
 
 	return (
