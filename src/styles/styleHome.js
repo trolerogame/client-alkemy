@@ -41,7 +41,7 @@ export const Modal = styled.div`
 	height: 100vh;
 	left: 0;
 	top: 0;
-	position: absolute;
+	position: fixed;
 	display: grid;
 	place-content: center;
 	background-color: rgba(0, 0, 0, 0.5);
@@ -49,6 +49,7 @@ export const Modal = styled.div`
 
 export const ModalCard = styled.form`
 	width: calc(100vw - 70px);
+	position: relative;
 	justify-content: center;
 	height: 400px;
 	background-color: #fff;
@@ -112,4 +113,46 @@ export const ContainRatio = styled.div`
     label{
         margin:10px 0;
     }
+`
+
+export const ImgTime = styled.img`
+	width:15px;
+	height:15px;
+	object-fit: cover;
+	margin-bottom:10px;
+	cursor:pointer;
+`
+
+export const ItemOpe = styled.div`
+	margin:0;
+	padding:20px 10px;
+	border-top:1px solid #dbdbdb;
+	border-bottom:1px solid #dbdbdb;
+	p{
+		margin:0;
+		font-size:14px;
+		color:gray;
+	}
+	b{
+		font-size:20px;
+		font-weight:300;
+	}
+	span{
+		margin:0 2px;
+		font-size:14px;
+		font-weight: 300;
+		color:${({incom}) => incom ? '#20bf6b' : '#222'};
+	}
+	&:focus{
+		background-color:red;
+	}
+	img{
+		margin:0px 10px;
+	}
+`
+
+export const Amount = styled.div`
+	font-size:22px;
+	color:${({incom}) => incom ? '#20bf6b' : '#222'};
+	
 `

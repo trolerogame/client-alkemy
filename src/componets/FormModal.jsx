@@ -5,6 +5,7 @@ import {
 	ModalCard,
 	CreateOperationSubmit,
 	ContainRatio,
+	ImgTime
 } from '../styles/styleHome'
 import { Context } from '../context/context'
 const FormModal = ({ setModal }) => {
@@ -23,6 +24,7 @@ const FormModal = ({ setModal }) => {
 	}
 	return reactDom.createPortal(
 		<Modal>
+			<ImgTime src="/xmark-solid.svg" alt="xmark font awesome" onClick={() => setModal(false)} />
 			<ModalCard
 				onSubmit={submitCreateOperation}
 				className="flex flex-column align-center"

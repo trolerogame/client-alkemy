@@ -82,7 +82,7 @@ const context = ({ children }) => {
 	}
 
 	const deleteOperation = async (id) => {
-		const res = await fetch(
+		await fetch(
 			`http://localhost:5050/operations/delete/${id}`,
 			{
 				method: 'DELETE',
@@ -91,8 +91,7 @@ const context = ({ children }) => {
 				}
 			}
 		)
-		const operationDelete = await res.json()
-		operationArray = operations.filter((op) => op.id !== operationDelete.id)
+		const operationArray = operations.filter((op) => op.id !== id)
 		setOperations(operationArray)
 	}
 

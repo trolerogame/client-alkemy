@@ -3,17 +3,12 @@ import { Context } from '../context/context'
 import Header from '../componets/Header'
 import { Balance, CreateOperation } from '../styles/styleHome'
 import FormModal from '../componets/FormModal'
+import OperationItem from '../componets/OperationItem'
+import { balanceAmount } from '../utils/balanceAmount'
 const home = () => {
 	const { user, token, getOperationsAndUser, operations } =
 		useContext(Context)
 	const [modal, setModal] = useState(false)
-	const total = (operations) =>
-		operations.reduce((acc, operation) => {
-			if (operation.incomOrExit == 'egreso')
-				return acc - +operation.amount
-			return acc + +operation.amount
-		}, 0)
-
 	useEffect(() => {
 		token && getOperationsAndUser()
 	}, [token])
@@ -25,16 +20,17 @@ const home = () => {
 					<div className="flex flex-column align-center">
 						<Balance>
 							<p>MI SALDO</p>
-							<span>$ {total(operations)}</span>
+							<span>$ {balanceAmount(operations)}</span>
 						</Balance>
 						<CreateOperation onClick={() => setModal(true)}>
 							Create Operation
 						</CreateOperation>
 					</div>
 					{modal && <FormModal setModal={setModal} />}
-					{operations.map((e) => (
-						<div>{e.concept}</div>
-					))}
+					{operations
+						.map((e) => (
+							<OperationItem key={e.id} {...e} />
+						))}
 				</>
 			)}
 		</>
