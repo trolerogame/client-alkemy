@@ -58,7 +58,7 @@ export const ModalCard = styled.form`
 	width: calc(100vw - 70px);
 	position: relative;
 	justify-content: center;
-	height: 400px;
+	height:450px;
 	background-color: #fff;
 	border-radius: 5px;
 	.concept-amount {
@@ -189,4 +189,23 @@ export const Amount = styled.div`
 	font-size:22px;
 	color:${({incom}) => incom ? '#20bf6b' : '#222'};
 	
+`
+
+export const IncomOrExit = styled.p`
+	font-size:18px;
+	text-align:center;
+	width: 120px;
+	position:relative;
+	cursor: pointer;
+	&::after{
+		content:'';
+		position:absolute;
+		display:block;
+		bottom:-5px;
+		left:0;
+		height:3px;
+		width:${({incom}) => incom ? '0%' : '100%'};
+		background:#6c5ce7;
+		transition: all 0.1s linear;
+	}
 `

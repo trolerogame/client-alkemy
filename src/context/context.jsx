@@ -68,7 +68,6 @@ const context = ({ children }) => {
 			}
 		)
 		const newOperation = await res.json()
-		console.log(newOperation)
 		setOperations([...operations, newOperation])
 	}
 

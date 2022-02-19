@@ -52,12 +52,10 @@ export const ContainLabel = styled.div`
         padding-left:20px;
         height:30px;
         border-radius:3px;
-        border:2px solid #dbdbdb;
+        border:1px solid ${({ validate }) =>
+			validate === null ? '#6c5ce7' : (validate === true ? '#2ecc71' : 'rgb(235,87,87)')};
         outline:none;
         transition:all 0.1s linear;
-    }
-    input:focus, input:active{
-        border:2px solid #6c5ce7;
     }
 `
 
@@ -79,4 +77,11 @@ export const Button = styled.button`
         outline: none;
         color:#fff;
     }
+`
+
+export const ErrorMessage = styled.span`
+    margin:0;
+    text-align:${({center}) => center ? 'center' : 'start'};
+    color:rgb(235,87,87);
+    font-size:14px;
 `
