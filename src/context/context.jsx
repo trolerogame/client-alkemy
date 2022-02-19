@@ -9,6 +9,7 @@ const context = ({ children }) => {
 	const [user, setUser] = useState({})
 	const [token, setToken] = useState(getTokenCookie())
 
+	// fetch api route getOperationsAndUser and setState user and operations
 	const getOperationsAndUser = async () => {
 		const res = await fetch('http://localhost:5050/user/operations', {
 			headers: {
@@ -20,10 +21,11 @@ const context = ({ children }) => {
 		setOperations(data.operations)
 	}
 
-	const createUser = async (email, password) => {
+
+	const createUser = async (email, password, username) => {
 		const res = await fetch('http://localhost:5050/user/register', {
 			method: 'POST',
-			body: JSON.stringify({ email, password }),
+			body: JSON.stringify({ email, password,username }),
 			headers: {
 				'Content-Type': 'application/json',
 			},
@@ -32,6 +34,7 @@ const context = ({ children }) => {
 		return user.error
 	}
 
+	// fetch api route login user and return token 
 	const loginUser = async (email, password) => {
 		const res = await fetch('http://localhost:5050/user/login', {
 			method: 'POST',
@@ -44,12 +47,14 @@ const context = ({ children }) => {
 		return token
 	}
 
+
 	const logout = () => {
 		setTokenCookie('')
 		setToken('')
 		navigate('/login')
 	}
 
+	// fetching api route create operation and push newOperation in state 
 	const createOperation = async (data) => {
 		const res = await fetch(
 			'http://localhost:5050/operations/create/',
@@ -67,20 +72,21 @@ const context = ({ children }) => {
 		setOperations([...operations, newOperation])
 	}
 
-	const updateOperation = async (id, concept, amount) => {
-		await fetch(`http://localhost:5050/operations/update/${id}`,{
+
+	const updateOperation = async (id, data) => {
+		const res = await fetch(`http://localhost:5050/operations/update/${id}`,{
 			method: 'PATCH',
-			body:JSON.stringify({
-				concept,
-				amount
-			}),
+			body:JSON.stringify({...data}),
 			headers:{
 				'Content-Type': 'application/json',
 				Authorization: `Bearer ${token}`
 			}
 		})
+		const editOperation = await res.json()
+		return editOperation
 	}
 
+	// fetching api route delete operation and filter id to state
 	const deleteOperation = async (id) => {
 		await fetch(
 			`http://localhost:5050/operations/delete/${id}`,
