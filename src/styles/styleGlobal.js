@@ -22,6 +22,9 @@ export const GlobalStyle = createGlobalStyle`
     .justify-center{
         justify-content: center;
     }
+    .justify-end{
+        justify-content: flex-end;
+    }
     .align-center{
         align-items: center;
     }
@@ -31,6 +34,16 @@ export const GlobalStyle = createGlobalStyle`
     .my-6{
         margin-top:10px;
         margin-bottom:10px;
+    }
+    .my-5{
+        margin-top:5px;
+        margin-bottom:5px;
+    }
+    .w-50{
+        width:100%;
+        @media (min-width:768px){
+            width:50%;
+        }
     }
 `
 
@@ -69,5 +82,31 @@ export const LinkStyle = styled(Link)`
     &:hover{
         color:#fff;
         background: #6c5ce7;
+    }
+`
+
+export const HeaderInfoUser = styled.div`
+    p{
+        font-size:20px;
+    }
+`
+
+export const ButtonDropdown = styled.button`
+    border:none;
+    outline: none;
+    width: 100px;
+    height: 30px;
+    font-weight: bold;
+    background: none;
+    color:#fc5c65;
+    font-size:14px;
+    padding:0;
+    margin-left: 10px;
+    transition: all .1s linear;
+    cursor: pointer;
+    border-radius: 5px;
+    &:hover{
+        background: #fc5c65;
+        color:#fff; 
     }
 `

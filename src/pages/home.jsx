@@ -1,12 +1,12 @@
 import React, { useEffect, useContext, useState } from 'react'
 import { Context } from '../context/context'
 import Header from '../componets/Header'
-import { Balance, CreateOperation } from '../styles/styleHome'
+import { Balance, CreateOperation,ContainHome } from '../styles/styleHome'
 import FormModal from '../componets/FormModal'
 import OperationItem from '../componets/OperationItem'
 import { balanceAmount } from '../utils/balanceAmount'
 const home = () => {
-	const { user, token, getOperationsAndUser, operations } =
+	const { user, token, getOperationsAndUser, operations, logout } =
 		useContext(Context)
 	const [modal, setModal] = useState(false)
 	useEffect(() => {
@@ -14,10 +14,14 @@ const home = () => {
 	}, [token])
 	return (
 		<>
-			<Header token={token} user={user ? user.email : ''} />
+			<Header
+				logout={logout}
+				token={token}
+				user={user ? user.username : ''}
+			/>
 			{token && (
-				<>
-					<div className="flex flex-column align-center">
+				<ContainHome className='flex'>
+					<div className="flex flex-column align-center w-50">
 						<Balance>
 							<p>MI SALDO</p>
 							<span>$ {balanceAmount(operations)}</span>
@@ -25,13 +29,14 @@ const home = () => {
 						<CreateOperation onClick={() => setModal(true)}>
 							Create Operation
 						</CreateOperation>
+						{modal && <FormModal setModal={setModal} />}
 					</div>
-					{modal && <FormModal setModal={setModal} />}
-					{operations
-						.map((e) => (
+					<div className='w-50'>
+						{operations.map((e) => (
 							<OperationItem key={e.id} {...e} />
 						))}
-				</>
+					</div>
+				</ContainHome>
 			)}
 		</>
 	)
