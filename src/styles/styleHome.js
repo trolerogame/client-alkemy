@@ -18,6 +18,13 @@ export const Balance = styled.div`
 	}
 `
 
+export const ContainHome = styled.main`
+	flex-direction: column;
+	@media (min-width: 768px) {
+		flex-direction: row;
+	}
+`
+
 export const CreateOperation = styled.div`
 	margin: 20px;
 	border: none;
@@ -57,10 +64,8 @@ export const ModalCard = styled.form`
 	.concept-amount {
 		width: 100%;
 	}
-	input[type='text'],
-	input[type='number'] {
-        width: calc(100% - 30px);
-        margin:10px 0;
+	input {
+        margin:5px 0;
 		padding-left:20px;
         height:30px;
         border-radius:3px;
@@ -68,6 +73,12 @@ export const ModalCard = styled.form`
         outline:none;
         transition:all 0.1s linear;
 	}
+	input[type='text'],
+	input[type='number'],
+	input[type='datetime-local']{
+		width: calc(100% - 30px);
+	}
+
 	input:focus, input:active{
         border:2px solid #6c5ce7;
     }
@@ -86,13 +97,20 @@ export const ModalCard = styled.form`
 	}
 `
 
+export const EditForm = styled(ModalCard)`
+	height:auto;
+	width:100%;
+	margin-top:10px;
+`
+
+
 export const CreateOperationSubmit = styled.button`
 	width: calc(100% - 80px);
 	cursor: pointer;
 	height: 40px;
 	background-color: #fff;
 	margin: 0 30px;
-	margin-top: 40px;
+	margin-top: 10px;
 	outline: 1px solid #6c5ce7;
 	border: none;
 	color: #6c5ce7;
@@ -116,18 +134,21 @@ export const ContainRatio = styled.div`
 `
 
 export const ImgTime = styled.img`
-	width:15px;
-	height:15px;
+	width:10px;
+	height:10px;
 	object-fit: cover;
+	margin:0;
+	margin-left:10px;
 	margin-bottom:10px;
 	cursor:pointer;
+	background-color:${({bg}) => bg ? bg : 'none'};
+	padding:5px;
+	border-radius:5px;
 `
 
 export const ItemOpe = styled.div`
 	margin:0;
-	padding:20px 10px;
-	border-top:1px solid #dbdbdb;
-	border-bottom:1px solid #dbdbdb;
+	padding:30px 10px;
 	p{
 		margin:0;
 		font-size:14px;
@@ -146,8 +167,21 @@ export const ItemOpe = styled.div`
 	&:focus{
 		background-color:red;
 	}
-	img{
-		margin:0px 10px;
+	
+	@media(min-width: 768px){
+		padding:20px 10px;
+		.data{
+			border: 1px solid #eee;
+			border-radius:15px;
+			border-top-left-radius:0;
+			padding:20px 30px;
+		}
+		margin:0 50px;
+		margin-bottom:0px;
+		.button-edit{
+			margin-top:10px;
+			margin-right: 30px;
+		}
 	}
 `
 
