@@ -1,3 +1,4 @@
+// get token in cookies
 export const getTokenCookie = () => {
 	for (let cookie of document.cookie.split('; ')) {
         cookie = cookie.split('=')

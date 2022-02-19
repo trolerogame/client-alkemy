@@ -1,4 +1,6 @@
+// convert amount to Notation money ej: 12000 to 12.000
 export const converAmount = amount => {
+    if(!amount) return ''
     let newAmount = ''
     let amountArr = amount.toString().split('')
     for(let i in amountArr.reverse()){
