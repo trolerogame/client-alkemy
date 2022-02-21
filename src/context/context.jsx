@@ -8,10 +8,11 @@ const context = ({ children }) => {
 	const [operations, setOperations] = useState([])
 	const [user, setUser] = useState({})
 	const [token, setToken] = useState(getTokenCookie())
+	const urlApi = 'http://localhost:5050'
 
 	// fetch api route getOperationsAndUser and setState user and operations
 	const getOperationsAndUser = async () => {
-		const res = await fetch('http://localhost:5050/user/operations', {
+		const res = await fetch( urlApi + '/user/operations', {
 			headers: {
 				Authorization: `Bearer ${token}`,
 			},
@@ -23,7 +24,7 @@ const context = ({ children }) => {
 
 
 	const createUser = async (email, password, username) => {
-		const res = await fetch('http://localhost:5050/user/register', {
+		const res = await fetch( urlApi + '/user/register', {
 			method: 'POST',
 			body: JSON.stringify({ email, password,username }),
 			headers: {
@@ -36,7 +37,7 @@ const context = ({ children }) => {
 
 	// fetch api route login user and return token 
 	const loginUser = async (email, password) => {
-		const res = await fetch('http://localhost:5050/user/login', {
+		const res = await fetch( urlApi + '/user/login', {
 			method: 'POST',
 			body: JSON.stringify({ email, password }),
 			headers: {
@@ -57,7 +58,7 @@ const context = ({ children }) => {
 	// fetching api route create operation and push newOperation in state 
 	const createOperation = async (data) => {
 		const res = await fetch(
-			'http://localhost:5050/operations/create/',
+			urlApi + '/operations/create/',
 			{
 				method: 'POST',
 				headers: {
@@ -73,7 +74,7 @@ const context = ({ children }) => {
 
 
 	const updateOperation = async (id, data) => {
-		const res = await fetch(`http://localhost:5050/operations/update/${id}`,{
+		const res = await fetch( urlApi + `/update/${id}`,{
 			method: 'PATCH',
 			body:JSON.stringify({...data}),
 			headers:{
@@ -88,7 +89,7 @@ const context = ({ children }) => {
 	// fetching api route delete operation and filter id to state
 	const deleteOperation = async (id) => {
 		await fetch(
-			`http://localhost:5050/operations/delete/${id}`,
+			urlApi + `/operations/delete/${id}`,
 			{
 				method: 'DELETE',
 				headers:{
