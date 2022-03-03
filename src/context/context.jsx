@@ -8,7 +8,7 @@ const context = ({ children }) => {
 	const [operations, setOperations] = useState([])
 	const [user, setUser] = useState({})
 	const [token, setToken] = useState(getTokenCookie())
-	const urlApi = 'http://localhost:5050'
+	const urlApi = 'https://api-node-alkemy.herokuapp.com/'
 
 	// fetch api route getOperationsAndUser and setState user and operations
 	const getOperationsAndUser = async () => {
