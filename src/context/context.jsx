@@ -8,7 +8,7 @@ const context = ({ children }) => {
 	const [operations, setOperations] = useState([])
 	const [user, setUser] = useState({})
 	const [token, setToken] = useState(getTokenCookie())
-	const urlApi = 'https://api-node-alkemy.herokuapp.com'
+	const urlApi = 'https://api-alkemy.onrender.com'
 
 	// fetch api route getOperationsAndUser and setState user and operations
 	const getOperationsAndUser = async () => {
@@ -42,9 +42,9 @@ const context = ({ children }) => {
 			body: JSON.stringify({ email, password }),
 			headers: {
 				'Content-Type': 'application/json',
-			},
+			}, 
 		})
-		const token = await res.json()
+		const token = await res.json()    
 		return token
 	}
 
